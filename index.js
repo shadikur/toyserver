@@ -46,10 +46,22 @@ async function run() {
 
         app.get("/sellerlist/:email", async (req, res) => {
             const email = req.params.email;
-            // Find all documents with the specified email
+            // Find all data with the specified email
             const result = await toyCollection.find({ email }).toArray();
             res.status(200).send(result);
         });
+
+        app.get("/category/:categoryName", async (req, res) => {
+            const categoryName = req.params.categoryName;
+
+            // Find all data with the specified category
+            const result = await toyCollection.find({ category: categoryName }).toArray();
+
+            // Return the found data
+            res.status(200).send(result);
+        })
+
+
 
         //------------- Endpoint routes ends here  ----------
 
