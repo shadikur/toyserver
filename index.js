@@ -36,6 +36,14 @@ async function run() {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
         //----------- Endpoint routes starts here  ----------
 
+        app.post("/addtoys", async (req, res) => {
+            const toydata = req.body;
+            // Insert the toy into the toyCollection
+            const result = await toyCollection.insertOne(toydata);
+            // Send response
+            console.log(toydata);
+            res.status(200).send(result)
+        })
 
         //------------- Endpoint routes ends here  ----------
 
