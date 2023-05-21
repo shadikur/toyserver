@@ -1,6 +1,6 @@
 // All the required modules
 require('dotenv').config();
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -46,6 +46,20 @@ async function run() {
             res.status(200).send(result);
         });
 
+
+        app.get("/toys/:id", async (req, res) => {
+            const toyId = req.params.id;
+            // Find the toy by its ID
+            const result = await toyCollection.findOne({ _id: new ObjectId(toyId) });
+
+            if (result) {
+                // Toy found, return it
+                res.status(200).send(result);
+            }
+            else {
+                res.status(404).send({ 'item': 'NOT FOUND' })
+            }
+        })
         app.post("/addtoys", async (req, res) => {
             const toydata = req.body;
             // Insert the toy into the toyCollection
