@@ -6,40 +6,12 @@ This repository contains a simple Express.js server that provides API endpoints 
 
 The following API endpoints are available:
 
-### Get All Toys
-
-- **Endpoint:** `/toys`
-- **HTTP Method:** GET
-- **Description:** Retrieve all toys.
-- **Example:** `GET /toys`
-
-### Get a Toy
-
-- **Endpoint:** `/toys/:id`
-- **HTTP Method:** GET
-- **Description:** Retrieve a specific toy by its ID.
-- **Example:** `GET /toys/12345`
-
-### Create a Toy
-
-- **Endpoint:** `/toys`
-- **HTTP Method:** POST
-- **Description:** Create a new toy.
-- **Example:** `POST /toys`
-
-### Update a Toy
-
-- **Endpoint:** `/toys/:id`
-- **HTTP Method:** PUT
-- **Description:** Update a specific toy by its ID.
-- **Example:** `PUT /toys/12345`
-
-### Delete a Toy
-
-- **Endpoint:** `/toys/:id`
-- **HTTP Method:** DELETE
-- **Description:** Delete a specific toy by its ID.
-- **Example:** `DELETE /toys/12345`
+    GET /toys: Get all toys data.
+    GET /toys/:id: Get a toy by its ID.
+    DELETE /toys/:id: Delete a toy by its ID.
+    POST /addtoys: Add a new toy.
+    GET /sellerlist/:email: Get all toys data by seller's email.
+    GET /category/:categoryName: Get all toys data by category.
 
 ## Dependencies
 
