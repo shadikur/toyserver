@@ -59,7 +59,17 @@ async function run() {
             else {
                 res.status(404).send({ 'item': 'NOT FOUND' })
             }
-        })
+        });
+
+
+        app.delete("/toys/:id", async (req, res) => {
+            const toyId = req.params.id;
+            // Find the toy by its ID
+            const result = await toyCollection.deleteOne({ _id: new ObjectId(toyId) });
+            res.status(200).send(result);
+        });
+
+
         app.post("/addtoys", async (req, res) => {
             const toydata = req.body;
             // Insert the toy into the toyCollection
