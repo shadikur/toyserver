@@ -36,6 +36,16 @@ async function run() {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
         //----------- Endpoint routes starts here  ----------
 
+        app.get("/toys", async (req, res) => {
+            let limit = req.query.limit || 20;
+            // Convert the limit to a number
+            limit = parseInt(limit);
+            // Find all toys data and apply the limit
+            const result = await toyCollection.find().limit(limit).toArray();
+            // Return the found documents
+            res.status(200).send(result);
+        });
+
         app.post("/addtoys", async (req, res) => {
             const toydata = req.body;
             // Insert the toy into the toyCollection
