@@ -77,10 +77,11 @@ async function run() {
 
         app.get("/category/:categoryName", async (req, res) => {
             const categoryName = req.params.categoryName;
-
+            let limit = req.query.limit || 20;
+            // Convert the limit to a number
+            limit = parseInt(limit);
             // Find all data with the specified category
-            const result = await toyCollection.find({ category: categoryName }).toArray();
-
+            const result = await toyCollection.find({ category: categoryName }).limit(limit).toArray();
             // Return the found data
             res.status(200).send(result);
         })
