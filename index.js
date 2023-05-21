@@ -41,9 +41,15 @@ async function run() {
             // Insert the toy into the toyCollection
             const result = await toyCollection.insertOne(toydata);
             // Send response
-            console.log(toydata);
             res.status(200).send(result)
-        })
+        });
+
+        app.get("/sellerlist/:email", async (req, res) => {
+            const email = req.params.email;
+            // Find all documents with the specified email
+            const result = await toyCollection.find({ email }).toArray();
+            res.status(200).send(result);
+        });
 
         //------------- Endpoint routes ends here  ----------
 
